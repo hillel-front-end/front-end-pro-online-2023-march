@@ -247,7 +247,7 @@ function swapMinMaxRow(array) {
   // const minIndex = findMinIndexOfArray(sums);
   // const maxIndex = findMaxIndexOfArray(sums);
 
-  //step --- 3
+  // step --- 3
   // const minIndex = findIndexByExpresson(sums, expression_min);
   // const maxIndex = findIndexByExpresson(sums, expression_max);
 
@@ -256,9 +256,9 @@ function swapMinMaxRow(array) {
   //   (currentItem, item) => urrentItem > item
   // );
 
-  console.log(minIndex, "minIndex");
-  console.log(maxIndex, "maxIndex");
-  console.log(sums, "sums");
+  // console.log(minIndex, "minIndex");
+  // console.log(maxIndex, "maxIndex");
+  // console.log(sums, "sums");
 }
 
 const array = arrayFilleTwoDem([], 5, 5);
