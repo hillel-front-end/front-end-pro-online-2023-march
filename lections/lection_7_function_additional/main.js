@@ -105,8 +105,17 @@ console.log(result2, "result2");
 
 // ----------------------------------------------------
 
-const logger = (message) => console.log(message);
+const logger = (message) => {
+  console.log(message);
+};
 
+const loggerWarning = (message) => {
+  console.warn(message);
+};
+
+const loggerError = (message) => {
+  console.error(message);
+};
 // function loggerDecorator(loggerCb, message) {
 //   loggerCb(message);
 //   console.log("message logged at", new Date().toLocaleString());
@@ -123,13 +132,17 @@ function loggerDecorator(loggerCb) {
   };
 }
 
-const decoratedLogger = loggerDecorator(logger);
+const successLoger = loggerDecorator(logger);
+const errorLoger = loggerDecorator(loggerError);
 
-console.log(decoratedLogger, "decoratedLogger");
+successLoger("Click on button");
+successLoger("Loading list products");
+successLoger("Another actions");
 
-decoratedLogger("Click on button");
-decoratedLogger("Loading list products");
-decoratedLogger("Another actions");
+errorLoger("Error -- !!!!");
+errorLoger("Error -- !!!!");
+errorLoger("Error -- !!!!");
+// const decoratedLoggerError = loggerDecorator(loggerError)
 
 //-------------------------
 
