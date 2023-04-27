@@ -101,7 +101,7 @@ const entries = Object.entries(a2);
 
 // ------- accessor properties --------
 
-// ------- computed, sequrity write ---------
+// ------- computed, security write ---------
 const person = {
   firstName: "Valera",
   lastName: "Ternavsky",
@@ -201,14 +201,16 @@ const history = {
       (record) =>
         '<li class="record">' + JSON.stringify(record, null, 50) + "</li>"
     );
-    return '<ul class="records">' + template.join(" ") + "</ul>";
+    return (
+      '<ul class="records card card__shadow">' + template.join(" ") + "</ul>"
+    );
   },
   drawRecords() {
     document.write(this.templateRecords);
   },
 };
 
-const square = {
+const shape = {
   dependencies: Object.seal({
     left: 100,
     right: 100,
@@ -216,7 +218,7 @@ const square = {
     bottom: 100,
   }),
   get perimeter() {
-    //------ bag ---
+    //------ Bug ---
 
     //  ------ Your resolve problem there -----
 
@@ -260,25 +262,25 @@ const square = {
   },
 };
 
-// square.dependencies.foo = NaN; // ignored because  - sealed
-// delete square.dependencies.left; // ignored because  - sealed
+// shape.dependencies.foo = NaN; // ignored because  - sealed
+// delete shape.dependencies.left; // ignored because  - sealed
 
-// square.perimeter = 500; // write -- call setter
+// shape.perimeter = 500; // write -- call setter
 
-// console.log(square.perimeter, "square.perimeter"); // read -- call getter
+// console.log(shape.perimeter, "shape.perimeter"); // read -- call getter
 
-// square.dependencies.bottom = 200;
+// shape.dependencies.bottom = 200;
 
 /// unoptimized operations
-console.log(square.perimeter, "square.perimeter");
-console.log(square.perimeter, "square.perimeter");
-console.log(square.perimeter, "square.perimeter");
+console.log(shape.perimeter, "shape.perimeter");
+console.log(shape.perimeter, "shape.perimeter");
+console.log(shape.perimeter, "shape.perimeter");
 
 // draw records on screen
 history.drawRecords();
 
 // compare -- modify and current dependencies
-console.log(square.dependencies, "square.dependencies");
+console.log(shape.dependencies, "shape.dependencies");
 console.log(
   history.records[history.records.length - 1].dependencies,
   "records"
