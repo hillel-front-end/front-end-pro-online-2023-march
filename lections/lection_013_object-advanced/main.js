@@ -276,6 +276,10 @@ console.log(shape.perimeter, "shape.perimeter");
 console.log(shape.perimeter, "shape.perimeter");
 console.log(shape.perimeter, "shape.perimeter");
 
+// shape.dependencies.bottom = 300;
+
+// shape.perimeter;
+
 // draw records on screen
 history.drawRecords();
 
