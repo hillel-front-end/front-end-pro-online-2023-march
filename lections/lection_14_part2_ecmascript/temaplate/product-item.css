@@ -100,3 +100,12 @@ html {
   max-width: 100%;
   height: 100%;
 }
+
+
+.apple.smartphones {
+ background-color: rgba(255, 255, 0, 0.235);
+}
+
+.apple.laptops {
+  background-color: rgba(0, 128, 0, 0.327);
+}
