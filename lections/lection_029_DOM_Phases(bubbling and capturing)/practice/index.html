@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+
+            width: 300px;
+            padding: 5px;
+            border: 1px solid green;
+        }
+
+        li {
+
+            border: 1px solid red;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script src="main.js"></script>
+</head>
+<body>
+    <ul class="parent"> 
+         <!-- 
+            data-action додає поведінку що повинно відбутися 
+            по кліку на li внутрі ul.parent 
+         --> 
+        <li data-action="open"> open modal </li>
+        <li data-action="edit"> open edit modal</li>
+        <li data-action="close"> close modal </li>
+    </ul>
+</body>
+</html>
