@@ -1,3 +1,38 @@
+const appendTable = (sizeX, sizeY) => {
+  const makeTable = (...rows) => {
+    const table = document.createElement("table");
+    table.append(...rows);
+
+    return table;
+  };
+
+  const makeRow = (...cells) => {
+    const row = document.createElement("tr");
+    row.append(...cells);
+    return row;
+  };
+
+  const makeCell = (content) => {
+    const cell = document.createElement("td");
+    cell.append(content);
+    return cell;
+  };
+
+  const table = makeTable(
+    Array(sizeX).fill(
+      makeRow(
+        Array(sizeX).fill(
+          makeCell(Math.random())
+        ) 
+      )
+    )
+  );
+
+  console.log(table, 'table');
+}
+
+appendTable(5, 5);
+
 window.onload = function () {
   const lies = [...document.querySelectorAll("li")];
 
