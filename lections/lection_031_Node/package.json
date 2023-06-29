@@ -1,0 +1,19 @@
+{
+  "name": "lection_031_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-sass": "node-sass --output-style compressed -o dist/css sass"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "node-sass": "^9.0.0"
+  }
+}
