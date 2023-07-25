@@ -32,13 +32,12 @@ export default class Router {
         console.log('----start Router plugin-----')
     }
 
+
     #updateView(pathTo) {
         let ComponentSearched = this.#findComponent(pathTo)
-
-        if (!(ComponentSearched instanceof Component)) {
+        if (!(new ComponentSearched instanceof Component)) {
             ComponentSearched = this.#findComponent('*')
         }
-
         this.#renderComponent(ComponentSearched)
     }
 
