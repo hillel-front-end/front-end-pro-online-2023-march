@@ -1,7 +1,6 @@
 {
   "name": "client-app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack --mode=development",
@@ -26,5 +25,6 @@
   "dependencies": {
     "bootstrap": "^5.3.0",
     "html-webpack-plugin": "^5.5.3"
-  }
+  },
+  "description": ""
 }
