@@ -10,7 +10,10 @@ const routes = [
     },
     {
         path: '/sign-in',
-        component: SignIn
+        component: SignIn,
+        beforeEach() {
+
+        }
     },
     {
         path: '*',
@@ -18,6 +21,14 @@ const routes = [
     }
 ]
 
-
-
 export const router = new Router(routes)
+
+const isAuth = false;
+router.beforeEach(function (from, to, next) {
+    if (isAuth) {
+        next();
+        return;
+    }
+
+    next('/sign-in');
+});
