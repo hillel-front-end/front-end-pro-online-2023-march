@@ -6,11 +6,14 @@ import { AsNode } from "@/common/decorators";
 class Input extends Component {
     constructor(...props) {
         super(...props);
+
+        console.log(this.props, 'props');
     }
 
-    onChangeHandler() {
-        console.log(123);
+    onChangeHandler(event) {
+        this.props.onChange(event);
     }
+
 
     // innerHTML = string vs append(node)
     /// createElement vs Template String
@@ -37,7 +40,7 @@ class Input extends Component {
     }
 
     bindEvent(node) {
-        node.querySelector('input').addEventListener('change', this.onChangeHandler)
+        node.querySelector('input').addEventListener('change', (event) => this.onChangeHandler(event))
         return node;
     }
 

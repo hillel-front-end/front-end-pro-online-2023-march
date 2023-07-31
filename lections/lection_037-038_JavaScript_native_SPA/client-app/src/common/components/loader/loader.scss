@@ -1,0 +1,17 @@
+.loader-backdrop {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+
+  z-index: 99;
+
+
+  background-color: rgba(0, 0, 0, 0.37);
+
+  & .loader {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -4,4 +4,4 @@ import App from "./App";
 
 
 
-MainApp(new App(), '#app');
+MainApp(App, '#app');

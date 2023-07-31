@@ -24,6 +24,7 @@ const routes = [
 export const router = new Router(routes)
 
 const isAuth = false;
+
 router.beforeEach(function (from, to, next) {
     if (isAuth) {
         next();

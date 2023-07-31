@@ -1,8 +1,8 @@
 import { router } from "@/router/router";
+import '@/store/store'
 
-
-function MainApp(instanceCmp, selector) {
-    document.querySelector(selector).innerHTML = instanceCmp;
+function MainApp(App, selector) {
+    document.querySelector(selector).append(new App().render());
     router.onInit();
     router.go(location.pathname);
 }

@@ -1,10 +1,11 @@
 import Component from "@/plugins/component";
+import Observer from "@/plugins/observer";
 
 export default class Router {
     routes = []
     originalPushState = null;
     #container = null;
-    #subBeforeEach = [];
+    #observerBeforeEach = new Observer()
 
     constructor(routes) {
         console.log('---- start configuration Router Plugin ---');
@@ -14,13 +15,11 @@ export default class Router {
         this.originalPushState = history.pushState;
 
         history.pushState =  (state, title, pathTo) => {
-            console.log('---- call pushState ---');
             this.go(pathTo);
         }
 
 
         history.onpushstate = (state, title, pathTo) => {
-            this.#updateView(pathTo);
             this.originalPushState.apply(history, [state, title, pathTo]);
         }
     }
@@ -50,6 +49,7 @@ export default class Router {
 
     go(pathTo) {
         const next = (anotherPathTo = null) => {
+            this.#updateView(pathTo);
             if (typeof history.onpushstate === 'function') {
                 history.onpushstate(null, null, anotherPathTo || pathTo);
             }
@@ -62,13 +62,13 @@ export default class Router {
     }
 
     #publishBeforeEach(...args) {
-        this.#subBeforeEach.forEach((cb) => cb(...args));
+        this.#observerBeforeEach.broadcast(...args);
     }
 
     beforeEach(cb) {
         if (!cb) return;
 
-        this.#subBeforeEach.push(cb);
+        this.#observerBeforeEach.subscribe(cb);
     }
 
 
