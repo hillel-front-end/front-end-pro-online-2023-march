@@ -2,7 +2,9 @@ import './signin.scss'
 import Component from "@/plugins/component";
 import Input from "@/common/components/Input/Input";
 import { AsNode, BindEvent } from "@/common/decorators";
-import {mutation_types, store} from "@/store/store";
+import { mutation_types, store } from "@/store/store";
+import axios from "axios";
+import httpService from "@/common/serives/Http.service";
 
 export default class SignIn extends Component {
     credentials = {}
@@ -14,32 +16,27 @@ export default class SignIn extends Component {
     }
 
     async onClickHandler(event) {
-
-        store.dispatch(mutation_types.SET_IS_LOADING, true);
-
         const { login, password } = this.credentials;
-
         let response;
 
         if (login && password) {
-            response = await this.onSignIn()
+            response = await this.onSignIn().catch((e) => null)
         }
-
-
-        setTimeout(() => {
-            store.dispatch(mutation_types.SET_IS_LOADING, false);
-        }, 1000)
     }
 
 
     async onSignIn() {
-        const response = await (await fetch('http://localhost:9001/sign-in', {
-            method: 'POST',
-            body: this.credentials
-        })).json();
+        const response = await httpService.post(
+            '/sign-in',
+            this.credentials
+        );
 
-        console.log(response, 'response');
-        return response
+        if (response.status === 200) {
+            store.dispatch(mutation_types.SET_ALERT, {
+                type: 'alert-success',
+                message: 'Ви авторизовані успішно'
+            })
+        }
     }
 
     updateTemplate(template) {
