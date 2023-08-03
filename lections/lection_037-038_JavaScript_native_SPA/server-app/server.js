@@ -1,7 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 9001;
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
     console.log(req.headers);
@@ -15,10 +22,11 @@ app.use((req, res, next) => {
     next();
 });
 
-const IS_AUTH = false;
+let IS_AUTH = false;
 
 app.post("/sign-in", (req, res) => {
-    if (IS_AUTH) {
+    if (req.body.login && req.body.password) {
+        IS_AUTH = true;
         res.status(200).json({ user: 'Valera', message: 'Ok' });
         return;
     }
