@@ -2,20 +2,23 @@ import './alert.scss';
 import Component from "@/plugins/component";
 import {AsNode, SaveContainer} from "@/common/decorators";
 import {mutation_types, store} from "@/store/store";
+import Queue from "@/plugins/queue";
 
 export default class Alert extends Component {
 
-    queue = [];
+    queue = new Queue();
     generator  = null;
     inProgress = false;
 
+
     constructor(...props) {
         super(...props);
+        console.log(123, '123');
         store.subscribe(mutation_types.SET_ALERT, this.addToQueue.bind(this))
     }
 
     addToQueue({ alert }) {
-        this.queue.push(alert);
+        this.queue.enqueue(alert);
 
         console.log('----- add to queue -----', this.queue);
 
@@ -38,9 +41,9 @@ export default class Alert extends Component {
     }
 
     * process() {
-        while(this.queue.length !== 0) {
+        while(!this.queue.isEmpty()) {
             console.log('------ process queue ----->', this.queue)
-            const alert = this.queue.shift();
+            const alert = this.queue.dequeue();
             this.updateAlert(alert)
             yield;
         }
@@ -64,12 +67,12 @@ export default class Alert extends Component {
     }
 
     hide(type) {
+        const alertNode = this.$container.querySelector('.alert')
         this.$container.classList.add('fade');
         alertNode.classList.remove(type);
         alertNode.innerText = '';
         this.generator.next();
     }
-
 
     @AsNode
     getTemplate() {

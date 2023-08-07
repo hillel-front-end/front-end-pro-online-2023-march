@@ -8,13 +8,17 @@ class HttpService {
 
     constructor() {
         this.$http.interceptors.request.use((config) => {
-            store.dispatch(mutation_types.SET_IS_LOADING, true);
+
+            if (!config.blockLoader) {
+                store.dispatch(mutation_types.SET_IS_LOADING, true);
+            }
+
             return config;
         })
 
-        this.$http.interceptors.response.use(({ data }) => {
+        this.$http.interceptors.response.use((response) => {
             this.loaderStop();
-            return data;
+            return response;
         }, (e) => {
 
             store.dispatch(mutation_types.SET_ALERT, {
@@ -29,12 +33,16 @@ class HttpService {
     }
 
 
-    async get(path) {
-       return await this.$http.get( `${BASE_URL}${path}`,);
+    async get(path, blockLoader = false) {
+       return await this.$http.get( `${BASE_URL}${path}`, {
+           blockLoader
+       });
     }
 
-    async post(path, body) {
-        return  await this.$http.post( `${BASE_URL}${path}`, body);
+    async post(path, body, blockLoader = false) {
+        return  await this.$http.post( `${BASE_URL}${path}`, body, {
+            blockLoader
+        });
     }
 
     loaderStop() {

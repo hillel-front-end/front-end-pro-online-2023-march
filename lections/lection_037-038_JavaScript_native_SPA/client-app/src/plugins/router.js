@@ -14,13 +14,15 @@ export default class Router {
 
         this.originalPushState = history.pushState;
 
-        history.pushState =  (state, title, pathTo) => {
+        history.pushState = (state, title, pathTo) => {
             this.go(pathTo);
         }
 
 
         history.onpushstate = (state, title, pathTo) => {
-            this.originalPushState.apply(history, [state, title, pathTo]);
+            setTimeout(() => {
+                this.originalPushState.apply(history, [state, title, pathTo]);
+            });
         }
     }
 
@@ -40,19 +42,22 @@ export default class Router {
         return this.routes.find(route => route.path === pathTo)?.component
     }
 
-
     // innerHTML VS createElement
 
     #renderComponent(Component) {
+        this.#container.innerHTML = '';
         this.#container.append(new Component().render());
     }
 
     go(pathTo) {
-        const next = (anotherPathTo = null) => {
-            this.#updateView(pathTo);
+        const next = (anotherPathTo) => {
+            const route = anotherPathTo || pathTo;
+
             if (typeof history.onpushstate === 'function') {
-                history.onpushstate(null, null, anotherPathTo || pathTo);
+                history.onpushstate(null, null, route);
             }
+
+            this.#updateView(route);
         }
 
         const pathFrom = location.pathname;

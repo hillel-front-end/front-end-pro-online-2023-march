@@ -5,6 +5,7 @@ import { AsNode, BindEvent } from "@/common/decorators";
 import { mutation_types, store } from "@/store/store";
 import axios from "axios";
 import httpService from "@/common/serives/Http.service";
+import {router} from "@/router/router";
 
 export default class SignIn extends Component {
     credentials = {}
@@ -17,10 +18,9 @@ export default class SignIn extends Component {
 
     async onClickHandler(event) {
         const { login, password } = this.credentials;
-        let response;
 
         if (login && password) {
-            response = await this.onSignIn().catch((e) => null)
+            this.onSignIn().catch((e) => null)
         }
     }
 
@@ -36,6 +36,9 @@ export default class SignIn extends Component {
                 type: 'alert-success',
                 message: 'Ви авторизовані успішно'
             })
+            store.dispatch(mutation_types.SET_USER_INFO, response.data);
+
+            router.go('/')
         }
     }
 
