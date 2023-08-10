@@ -1,5 +1,6 @@
 export default class Component {
     props = {};
+
     constructor(...props) {
         if (typeof this.render !== 'function') {
             throw new Error('Component should implement render() method');
@@ -22,7 +23,15 @@ export default class Component {
 
     replaceSlot(template, ...slots) {
         for (const { key, replacer } of slots) {
-            template.querySelector(key).replaceWith(replacer());
+            const node = replacer()
+
+
+            if (Array.isArray(node)) {
+                template.querySelector(key).replaceWith(...node);
+                continue;
+            }
+
+            template.querySelector(key).replaceWith(node);
         }
 
         return template;

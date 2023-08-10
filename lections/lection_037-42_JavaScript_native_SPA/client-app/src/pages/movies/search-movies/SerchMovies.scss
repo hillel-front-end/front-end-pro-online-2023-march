@@ -1,0 +1,14 @@
+.search-movies {
+
+  &.form-inline {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+
+  [type="search"] {
+    width: 500px;
+  }
+
+}

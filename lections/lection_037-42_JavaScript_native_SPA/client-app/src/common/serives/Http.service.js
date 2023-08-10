@@ -40,10 +40,12 @@ class HttpService {
     }
 
     async post(path, body, blockLoader = false) {
-        return  await this.$http.post( `${BASE_URL}${path}`, body, {
+        return await this.$http.post( `${BASE_URL}${path}`, body, {
             blockLoader
         });
     }
+
+
 
     loaderStop() {
         setTimeout(() => {

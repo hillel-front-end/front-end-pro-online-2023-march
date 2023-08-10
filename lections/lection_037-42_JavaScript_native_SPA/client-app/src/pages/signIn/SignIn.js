@@ -1,4 +1,4 @@
-import './signin.scss'
+import './Signin.scss'
 import Component from "@/plugins/component";
 import Input from "@/common/components/Input/Input";
 import { AsNode, BindEvent } from "@/common/decorators";

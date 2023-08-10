@@ -1,0 +1,12 @@
+.header {
+  padding: 10px;
+
+  &__btn-logout {
+    color: white;
+    font-size: 25px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
