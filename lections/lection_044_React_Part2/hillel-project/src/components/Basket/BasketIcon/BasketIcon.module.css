@@ -1,0 +1,9 @@
+.BasketIcon {
+    width: 35px;
+    height: 35px;
+}
+
+
+.BasketIcon path {
+    fill: #f3f0f0;
+}

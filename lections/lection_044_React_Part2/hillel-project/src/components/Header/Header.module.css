@@ -1,0 +1,10 @@
+.Header {
+    background-color: #595a8a;
+    color: white;
+    padding: 15px 20px;
+}
+
+.HeaderBasketCounter {
+    display: flex;
+    justify-content: flex-end;
+}

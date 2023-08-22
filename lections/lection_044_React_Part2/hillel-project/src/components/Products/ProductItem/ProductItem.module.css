@@ -1,0 +1,47 @@
+.ProductItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.ProductPictureWrapper {
+    width: 100%;
+    overflow: hidden;
+    transition: height 100ms ease-out;
+}
+
+.ContentWrapper {
+    padding: 15px;
+}
+
+.title {
+    margin: 0px;
+    font-size: 20px;
+}
+
+.description {
+    margin: 10px 0px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
+.price {
+    font-size: 1.1rem;
+}
+
+.picture {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.ButtonGroup {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.ButtonGroup button {
+    flex: 1;
+}

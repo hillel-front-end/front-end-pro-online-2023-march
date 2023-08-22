@@ -1,0 +1,32 @@
+.BasketButton {
+    position: relative;
+    z-index: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.BasketButton:hover:before {
+    top: 0px;
+    z-index: -1;
+}
+
+.BasketButton:before {
+    position: absolute;
+    content: attr(data-count);
+    width: 20px;
+    height: 20px;
+    background-color: #ff3300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px;
+    font-weight: bold;
+    border-radius: 100%;
+    color: #fff;
+    right: 10px;
+    top: -6px;
+    z-index: 1;
+    transition: 0.2s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

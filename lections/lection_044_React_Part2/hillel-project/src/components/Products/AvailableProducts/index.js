@@ -1,3 +1,3 @@
-import AvailableProducts from './AvailabelProducts';
+import AvailableProducts from './AvailableProducts';
 
 export default AvailableProducts;
