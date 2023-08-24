@@ -3,7 +3,7 @@ import DeleteIcon from "../../../UI-Components/Icon";
 import Picture from "../../../UI-Components/Picture";
 import ProductInfo from "../../Products/ProductInfo";
 import CounterWrapper from "../../../UI-Components/CounterWrapper/CounterWrapper";
-import { Button } from "../../../UI-Components/Buttom/Button";
+import { Button } from "../../../UI-Components/Button/Button";
 
 const BasketItem = (props) => {
   return (

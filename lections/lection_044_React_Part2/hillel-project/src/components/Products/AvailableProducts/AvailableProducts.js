@@ -3,6 +3,8 @@ import ProductItem from "../ProductItem";
 import Card from "../../../UI-Components/Card";
 
 const AvailableProducts = (props) => {
+  console.log("---render AvailableProducts ----");
+
   const products = props.products.map((product) => (
     <Card key={product.id}>
       <ProductItem

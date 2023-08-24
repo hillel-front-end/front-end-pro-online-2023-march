@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../Buttom/Button";
+import { Button } from "../Button/Button";
 
 const ModalContent = styled.div`
   position: fixed;

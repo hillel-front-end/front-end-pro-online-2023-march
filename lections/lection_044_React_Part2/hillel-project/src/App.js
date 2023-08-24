@@ -1,10 +1,29 @@
 import "./App.css";
-import React, { useReducer, useState } from "react";
+import React, {
+  useReducer,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  Component,
+} from "react";
 import Header from "./components/Header";
 import Products from "./components/Products";
 import Container from "./UI-Components/Container";
 import BasketCard from "./components/Basket/BasketCard";
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
+import SearchBar from "./components/SearchBar";
+import { Button } from "./UI-Components/Button/Button";
+
+function factorial(n) {
+  console.log("---calc heavy operation----");
+  let result = 1;
+
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+
+  return result;
+}
 
 const products = [
   {
@@ -65,8 +84,9 @@ const products = [
   },
 ];
 
+// userRef, React.memo(), React.useCallback(), React.useMemo()
 // let counter = 1;
-//action = { type: 'remove', payload: product }
+// action = { type: 'remove', payload: product }
 
 const basketReducer = (state, action) => {
   switch (action.type) {
@@ -110,6 +130,9 @@ const initialData = {
 
 function App() {
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [searchParams, setSearchParams] = useState({});
+
+  console.log("---render App ----");
   // const [basketItems, setBasketItems] = useState([]);
   // const [basketCounter, setBasketCounter] = useState(0);
   // const [totalPriceBasketItems, setTotalPriceBasketItems] = useState(0);
@@ -140,10 +163,55 @@ function App() {
     setModalVisibility(false);
   };
 
+  let updateSearchParams = function (params) {
+    console.log(state.basketCounter);
+
+    setSearchParams((prev) => ({
+      ...prev,
+      ...params,
+      counter: state.basketCounter,
+    }));
+  };
+
+  // ---------- USE MEMO -----------
+  const [factValue, setFactValue] = useState(1);
+
+  const result = useMemo(() => factorial(factValue), [factValue]);
+  // const result = factorial(factValue);
+
+  updateSearchParams = useCallback(updateSearchParams, [state.basketCounter]);
+  /// ------- use effect ------
+
+  const [loadedProducts, setLoadedProducts] = useState([]);
+
+  function sendAjax() {
+    setTimeout(() => {
+      const payload = [{ a: 12 }];
+      setLoadedProducts((prev) => [...prev, ...payload]);
+    }, 200);
+  }
+
+  // sendAjax()
+  // --- call when dom rendering complite ---
+  useEffect(() => {
+    // sendAjax()
+    // localStorage.getItem()
+  }, []);
+
+  const [vis, setVis] = useState(true);
+
   return (
     <div className="App">
       <Header basketCounter={state.basketCounter} onOpenModal={onOpenModal} />
+      {/* {JSON.stringify(searchParams)}
+      {state.basketCounter} */}
+      {/* <hr />
+      <input onBlur={(event) => setFactValue(+event.target.value)} />
+      result = {result}, factValue = {factValue}
+      <hr /> */}
       <Container>
+        <Button onClick={() => setVis(!vis)}>toogle vis</Button>
+        {vis && <SearchBar visibility={true} onUpdate={updateSearchParams} />}
         <Products products={products} addToBasket={addToBasket} />
       </Container>
       <BasketCard

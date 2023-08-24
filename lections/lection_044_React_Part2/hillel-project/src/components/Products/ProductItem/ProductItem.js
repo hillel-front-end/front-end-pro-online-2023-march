@@ -1,7 +1,7 @@
 import classes from "./ProductItem.module.css";
 import Picture from "../../../UI-Components/Picture/Picture";
 import ProductInfo from "../ProductInfo/ProductInfo";
-import { Button, ButtonsGroup } from "../../../UI-Components/Buttom/Button";
+import { Button, ButtonsGroup } from "../../../UI-Components/Button/Button";
 
 const ProductItem = (props) => {
   return (

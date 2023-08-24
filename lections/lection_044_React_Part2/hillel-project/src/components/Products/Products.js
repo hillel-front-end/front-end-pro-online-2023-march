@@ -5,6 +5,9 @@ const Products = (props) => {
     (product) => product.isAvailable
   );
 
+  console.log('---render Products ----');
+
+
   return (
     <div className="products">
       <AvailableProducts
